@@ -1,0 +1,255 @@
+.body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.home-page {
+  padding-top: 20px; padding-bottom: 20px;
+  min-height: 100vh;
+  background-color: rgb(8, 13, 92);
+  display: flex;
+  align-items: center; justify-content: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: row;
+  height: 650px;
+}
+
+.connexion {
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  background-color: white;
+  text-decoration: none;
+  box-sizing: border-box;
+  min-height: 650px;
+  padding: 50px;
+  width: 500px;
+  border-radius: 0px 15px 15px 0px;
+}
+
+.title {
+  margin: 30px, 200px 150px 30px;
+}
+
+.title1 {
+  color: rgb(26, 17, 101);
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 42px;
+  margin: 0px;
+  /* font-family: ; */
+}
+
+.title2 {
+  color: rgb(26, 17, 101);
+  line-height: 1.5;
+  font-weight: 500;
+  font-size: 24px;
+  margin: 0px;
+  /* font-family: */
+}
+
+.email, .mdp {
+  /* font-family: ; */
+  line-height: 1.5;
+  position: relative;
+}
+
+.email {
+  margin-top: 64px;
+}
+
+.label {
+  display: inline-block;
+  word-break: break-word;
+  cursor: default;
+  position: absolute;
+  z-index: 2;
+  top: 19px;
+  left: 13px;
+  color: rgb(134, 142, 150);
+  /* transition: transform 150ms ease 0s, color 150ms ease 0s, font-size 150ms ease 0s; */
+  transform: none;
+  font-size: 14px;
+  font-weight: 400;
+  pointer-events: none;
+}
+
+.input {
+  position: relative;
+  border: none;
+}
+
+.input-email, .input-mdp {
+  /* font-family: ; */
+  -webkit-tap-highlight-color: transparent;
+  line-height: 34px;
+  appearance: none;
+  resize: none;
+  box-sizing: border-box;
+  font-size: 14px;
+  width: 100%;
+  display: block;
+  text-align: left;
+  min-height: 36px;
+  border-radius: 4px;
+  border: 1px solid rgb(206, 212, 218);
+  background-color: white;
+  transition: border-color 100ms ease 0s;
+  height: 60px;
+  margin-left: 0px;
+  padding: 8px !important;
+}
+
+.input-email:focus, .input-mdp:focus {
+  border-left: 5px solid rgb(4, 218, 179);
+}
+
+.input-email {
+  border-radius: 7px 7px 0px 0px;
+}
+
+.input-mdp {
+  margin-top: -1px;
+  border-radius: 0px 0px 7px 7px;
+}
+
+button .input-email, button .input-mdp {
+  overflow: visible;
+}
+
+.btn-check {
+  border: none;
+  background: transparent;
+}
+
+.check-mdp {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 1px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 36px;
+}
+
+.eye-check {
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  appearance: none;
+  font-size: 16px;
+  text-align: left;
+  text-decoration: none;
+  position: relative;
+  height: 28px;
+  min-height: 28px;
+  width: 28px;
+  min-width: 28px;
+  border-radius: 4px;
+  padding: 0px;
+  line-height: 1;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+button{
+  border: none;
+  background: transparent;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  -webkit-box-align: center;
+}
+
+.remember-btn {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.btn-remember-me {
+  box-sizing: border-box;
+  padding: 0px;
+  background-color: rgb(206, 212, 218);
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: block;
+  margin: 0px;
+  /* transition */
+  cursor: default;
+}
+
+.rm-label {
+  /* font-family: ; */
+  -webkit-tap-highlight-color: transparent;
+  padding-left: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+  cursor: default;
+}
+
+.boutons {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  -webkit-box-pack: center;
+}
+
+.btn-connexion {
+  padding-right: 22px;
+  padding-left: 22px;
+  text-align: left;
+  text-decoration: none;
+  box-sizing: border-box;
+  height: 42px;
+  /* font-family: ; */
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  font-weight: 600;
+  position: relative;
+  line-height: 1;
+  font-size: 16px;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background-color: rgb(4, 218, 179);
+  width: 150px;
+  margin: 24px 15px 15px;
+  border-radius: 5px;
+}
+
+.btn-label {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 100%;
+  overflow: visible;
+  color: white;
+}
+
+.btn-connexion-label {
+  white-space: nowrap;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}

@@ -10,9 +10,7 @@ import Axios from 'axios'
 
 function App() {
 
-  var md5 = require('md5');
-
-  const [email, setEmail] = useState("");
+   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
 

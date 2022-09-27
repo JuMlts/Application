@@ -4,6 +4,7 @@ import eye from "./visON.svg"
 import React, { useEffect,useState } from "react"
 import Axios from 'axios'
 import loadUserInfos from './loadUserInfos';
+import Remember from './Remember';
 
 <title>Application</title>
 
@@ -96,12 +97,7 @@ function App() {
                 </div>
               </div>
 
-              <div class="remember-me">
-                <div class="remember-btn">
-                  <input class="btn-remember-me" type="checkbox" id="exampleUniq" />
-                </div>
-                <label class="rm-label" for="exampleUniq">Se souvenir de moi</label>
-              </div>
+              <Remember />
           
               <div class="boutons">
                 <button class="btn-connexion" type="submit" value="Connexion" onClick={login}>

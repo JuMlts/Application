@@ -84,8 +84,6 @@ app.post('/refreshToken', (req, res) => {
 app.post("/login", (req, res) => {
     const email = req.body.email;
     const password = md5(req.body.password);
-    console.log(email);
-    console.log(password);
     var sql = 'SELECT * FROM users WHERE email = ? AND mot_de_passe = ?'
     db.query(sql,[email,password],
         (err,result) => {

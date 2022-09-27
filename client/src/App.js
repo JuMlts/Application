@@ -3,14 +3,11 @@ import fond from "./background.png"
 import eye from "./visON.svg"
 import React, { useEffect,useState } from "react"
 import Axios from 'axios'
-
+import loadUserInfos from './loadUserInfos';
 
 <title>Application</title>
 
-
 function App() {
-
-  var md5 = require('md5');
 
   const [email, setEmail] = useState("");
 
@@ -18,12 +15,17 @@ function App() {
 
   const [confPassword, setConfPassword] = useState("");
 
+  let refreshToken;
+
   const login = () => {
     Axios.post('http://localhost:3001/login', {
       email: email, 
       password: password
-    }).then(() => {
+    }).then((response) => {
       console.log("success");
+      Axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
+      refreshToken = response.data.refreshToken;
+      loadUserInfos();
     });
   }
 

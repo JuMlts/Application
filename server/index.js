@@ -15,10 +15,8 @@ const db = mysql.createConnection({
 })
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s' });
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
   }
-
-//const accessToken = generateAccessToken(user);
 
 app.use(cors());
 app.use(express.json());
@@ -28,25 +26,72 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+  
+    if (token == null) return res.sendStatus(401)
+  
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+      if (err) {
+        return res.sendStatus(401)
+      }
+      req.user = user;
+      next();
+    });
+  }
+
+function generateRefreshToken(user) {
+return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1y' });
+}
+
+app.get('/me', authenticateToken, (req, res) => {
+res.send(req.user);
+});
+
+app.post('/refreshToken', (req, res) => {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (token == null) return res.sendStatus(401)
+
+    jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) {
+        return res.sendStatus(401)
+    }
+    delete user.iat;
+    delete user.exp;
+    const refreshedToken = generateAccessToken(user);
+    res.send({
+      accessToken: refreshedToken,
+    });
+  });
+});
+
 app.post("/login", (req, res) => {
     const email = req.body.email;
     const password = md5(req.body.password);
     var sql = 'SELECT * FROM users WHERE email = ? AND mot_de_passe = ?'
-    var sqlres = db.query(sql,[email,password],
+    db.query(sql,[email,password],
         (err,result) => {
             if (err) {
-                return null;
+                console.log("KO");
             } else {
-                return result;
+                if (result.length > 0) {
+                    console.log("connecté");  
+                    const accessToken = generateAccessToken(email);
+                    res.send({
+                          accessToken,
+                      });  
+                      console.log(accessToken); 
+                }
+                else {
+                    console.log("invalid credentials");
+                }
             }
         }
     );
-    if ((req.body.email !== sqlres.values[0]) || (req.body.email !== sqlres.values[1])) {
-        res.status(401).send('invalid credentials');
-        return ;
-    } else {
-        console.log("ok");
-    }
+       
 });
 
 app.listen(PORT, () => {

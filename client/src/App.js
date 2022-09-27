@@ -3,10 +3,10 @@ import fond from "./background.png"
 import React, { useEffect,useState } from "react"
 import Axios from 'axios'
 import loadUserInfos from './loadUserInfos';
-import Remember from './Remember';
-import Email from './Email';
-import Password from './Password';
-import Connexion from './Connexion';
+import Remember from './Components/Remember';
+import Email from './Components/Email';
+import Password from './Components/Password';
+import Connexion from './Components/Connexion';
 
 <title>Application</title>
 
@@ -26,39 +26,11 @@ function App() {
       password: password
     }).then((response) => {
       console.log("success");
-      Axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
+      /*Axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
       refreshToken = response.data.refreshToken;
-      loadUserInfos();
+      loadUserInfos(); */
     });
   }
-
-  // function to update state of email with value
-
-  // enter by user in form
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  // function to update state of password with
-
-  // value enter by user in form
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  // function to update state of confirm password
-
-  // with value enter by user in form
-
-  const handleConfPasswordChange = (e) => {
-    setConfPassword(e.target.value);
-  };
-
-  // below function will be called when user
-
-  // click on submit button .
 
   return (
     <body>
@@ -76,13 +48,13 @@ function App() {
                 <h2 class="title2">Connectez vous à votre compte</h2>
               </div>
 
-              <Email data={handleEmailChange}/>
+              <Email setEmail={setEmail} />
 
-              <Password data={handlePasswordChange}/>
+              <Password setPassword={setPassword} />
 
               <Remember />
           
-              <Connexion data={login}/>
+              <Connexion login={login}/>
 
             </div>
 

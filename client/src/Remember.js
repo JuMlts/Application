@@ -1,8 +1,7 @@
 import './App.css';
-import React, { Component } from "react"
 
-export default class Remember extends Component {
-    render() {
+function Remember()  {
+   
         return(
             <div class="remember-me">
                 <div class="remember-btn">
@@ -11,8 +10,9 @@ export default class Remember extends Component {
                 <label class="rm-label" for="exampleUniq">Se souvenir de moi</label>
             </div>
         )
-    }
 }
+
+export default Remember;
 
 
 

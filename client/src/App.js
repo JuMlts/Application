@@ -1,10 +1,12 @@
 import './App.css';
 import fond from "./background.png"
-import eye from "./visON.svg"
 import React, { useEffect,useState } from "react"
 import Axios from 'axios'
 import loadUserInfos from './loadUserInfos';
 import Remember from './Remember';
+import Email from './Email';
+import Password from './Password';
+import Connexion from './Connexion';
 
 <title>Application</title>
 
@@ -74,38 +76,13 @@ function App() {
                 <h2 class="title2">Connectez vous à votre compte</h2>
               </div>
 
-              <div class="email">
-                <label class="label">  </label>
-                <div class="imput">
-                  <input class="input-email"  placeholder="Adresse email" type="email" onChange={handleEmailChange} />
-                </div>
-              </div>
+              <Email data={handleEmailChange}/>
 
-              <div class="mdp">
-                <label class="label"> </label>
-                <div class="input">
-                  <input class="input-mdp" type="password" id="myInput" placeholder="Mot de passe" onChange={handlePasswordChange}/>
-                  
-                    <div class="check-mdp">
-                      <button class="btn-check">
-                        <button class="eye-check">
-                          <img src={eye} alt="eye"></img>
-                        </button>
-                      </button>
-                    </div>
-                  
-                </div>
-              </div>
+              <Password data={handlePasswordChange}/>
 
               <Remember />
           
-              <div class="boutons">
-                <button class="btn-connexion" type="submit" value="Connexion" onClick={login}>
-                  <div class="btn-label">
-                    <span class="btn-connexion-label">Connexion</span>
-                  </div>
-                </button>
-              </div>
+              <Connexion data={login}/>
 
             </div>
 

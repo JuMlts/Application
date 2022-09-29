@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-  }
+}
 
 app.use(cors());
 app.use(express.json());
@@ -39,14 +39,27 @@ function authenticateToken(req, res, next) {
       req.user = user;
       next();
     });
-  }
+}
 
 function generateRefreshToken(user) {
-return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1y' });
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1y' });
+}
+
+function validateToken(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+  
+    if (token == null) return res.sendStatus(401);
+  
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+      if (err) return res.sendStatus(403);
+      req.tokenData = decoded;
+      next();
+    });
 }
 
 app.get('/me', authenticateToken, (req, res) => {
-res.send(req.user);
+    res.send(req.user);
 });
 
 app.post('/refreshToken', (req, res) => {
@@ -75,23 +88,24 @@ app.post("/login", (req, res) => {
     db.query(sql,[email,password],
         (err,result) => {
             if (err) {
-                console.log("KO");
+                res.status(500);
             } else {
                 if (result.length > 0) {
                     console.log("connecté");  
                     const accessToken = generateAccessToken(email);
-                    res.send({
-                          accessToken,
+                    res.json({
+                        token: `Bearer ${accessToken}`,
                       });  
-                      console.log(accessToken); 
+                    res.status(200);    
+                    console.log(accessToken); 
                 }
                 else {
                     console.log("invalid credentials");
+                    res.status(401);
                 }
             }
         }
     );
-       
 });
 
 app.listen(PORT, () => {

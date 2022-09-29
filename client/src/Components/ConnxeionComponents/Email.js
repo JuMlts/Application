@@ -7,10 +7,10 @@ function Email({setEmail}) {
       };
     
     return(
-        <div class="email">
-            <label class="label">  </label>
-            <div class="imput">
-                <input class="input-email"  placeholder="Adresse email" type="email" onChange={handleEmailChange} />
+        <div className="email">
+            <label className="label">  </label>
+            <div className="imput">
+                <input className="input-email"  placeholder="Adresse email" type="email" onChange={handleEmailChange} />
             </div>
         </div>
     )

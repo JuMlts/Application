@@ -88,7 +88,7 @@ app.post("/login", (req, res) => {
     db.query(sql,[email,password],
         (err,result) => {
             if (err) {
-                console.log("KO");
+                res.status(500);
             } else {
                 if (result.length > 0) {
                     console.log("connecté");  
@@ -96,11 +96,12 @@ app.post("/login", (req, res) => {
                     res.json({
                         token: `Bearer ${accessToken}`,
                       });  
-                      console.log(accessToken); 
+                    res.status(200);    
+                    console.log(accessToken); 
                 }
                 else {
                     console.log("invalid credentials");
-                    res.sendStatus(401);
+                    res.status(401);
                 }
             }
         }

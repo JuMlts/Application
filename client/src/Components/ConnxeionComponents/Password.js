@@ -10,13 +10,13 @@ function Password({setPassword}) {
       };
 
     return(
-        <div class="mdp">
-            <label class="label"> </label>
-            <div class="input">
-                <input class="input-mdp" type={visibility ? "text" : "password" } id="myInput" placeholder="Mot de passe" onChange={handlePasswordChange}/>
-                <div class="check-mdp">
-                    <div class="btn-check">
-                        <div class="eye-check" >
+        <div className="mdp">
+            <label className="label"> </label>
+            <div className="input">
+                <input className="input-mdp" type={visibility ? "text" : "password" } id="myInput" placeholder="Mot de passe" onChange={handlePasswordChange}/>
+                <div className="check-mdp">
+                    <div className="btn-check">
+                        <div className="eye-check" >
                             <img src={eye} alt="eye" onClick={() => setvisibility(!visibility)}></img>
                         </div>
                     </div>
